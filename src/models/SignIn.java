@@ -1,5 +1,13 @@
 package models;
 
+/**
+ * This class creates the view of the first page for the application and
+ * controls the opening of the application.
+ *
+ * @author Amantii Samson
+ * last updated: 11/29/20
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,5 +31,4 @@ public class SignIn extends Application {
         _stage.setScene(scene);
         _stage.show();
     }
-
 }

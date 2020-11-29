@@ -9,28 +9,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.MainPageController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainPageController">
    <children>
       <TableView layoutX="14.0" layoutY="82.0" prefHeight="404.0" prefWidth="446.0">
         <columns>
-          <TableColumn prefWidth="115.0" text="History" />
+          <TableColumn prefWidth="115.0" text="Patient" />
           <TableColumn prefWidth="86.0" text="Date" />
-            <TableColumn prefWidth="103.0" text="Doctor" />
+            <TableColumn prefWidth="103.0" text="Meeting Type" />
             <TableColumn prefWidth="141.0" text="Description" />
         </columns>
       </TableView>
-      <Button layoutX="516.0" layoutY="157.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="145.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Set Appointment">
+      <Button layoutX="500.0" layoutY="157.0" mnemonicParsing="false" onAction="#setAppointment" prefHeight="44.0" prefWidth="161.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Set Appointment">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="516.0" layoutY="284.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="145.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Cancel Appointment">
+      <Button layoutX="500.0" layoutY="284.0" mnemonicParsing="false" onAction="#cancelAppointment" prefHeight="44.0" prefWidth="161.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Cancel Appointment">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <TextField layoutX="531.0" layoutY="8.0" prefHeight="25.0" prefWidth="161.0" promptText="Search" />
+      <TextField layoutX="531.0" layoutY="8.0" prefHeight="25.0" prefWidth="161.0" promptText="Contact ID" />
       <Button fx:id="logout" layoutX="460.0" layoutY="8.0" mnemonicParsing="false" onAction="#returnToLogin" style="-fx-font-family: serif; -fx-border-color: black;" text="Logout" />
       <ImageView fitHeight="69.0" fitWidth="106.0" layoutX="26.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>

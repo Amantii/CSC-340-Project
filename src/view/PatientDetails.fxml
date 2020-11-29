@@ -8,10 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="525.0" style="-fx-background-color: #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.PatientDetailsController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="525.0" style="-fx-background-color: #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientDetailsController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="9.0" layoutY="8.0" prefHeight="684.0" prefWidth="508.0">
+      <AnchorPane id="AnchorPane" layoutX="9.0" layoutY="8.0" prefHeight="482.0" prefWidth="508.0">
          <children>
             <Text layoutX="146.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Patient Details">
                <font>
@@ -20,48 +19,43 @@
             </Text>
             <Text layoutX="50.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Fill out and submit the form below to complete the creation of your account!" />
             <Line endX="218.5" layoutX="247.0" layoutY="88.0" startX="-203.5" />
-            <Text layoutX="44.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Full Name">
+            <Text layoutX="43.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="First Name">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Text>
-            <TextField layoutX="174.0" layoutY="135.0" prefHeight="27.0" prefWidth="249.0" promptText="Full Name" style="-fx-font-family: serif;" />
-            <Text layoutX="50.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Gender">
+            <TextField fx:id="firstName" layoutX="174.0" layoutY="135.0" prefHeight="27.0" prefWidth="249.0" promptText="Enter First Name" style="-fx-font-family: serif;" />
+            <Text layoutX="48.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Gender">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <ComboBox layoutX="174.0" layoutY="190.0" prefHeight="27.0" prefWidth="249.0" />
-            <Text layoutX="35.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Date of Birth">
+            <ComboBox layoutX="174.0" layoutY="243.0" prefHeight="27.0" prefWidth="249.0" />
+            <Text layoutX="37.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Date of Birth">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <ComboBox layoutX="174.0" layoutY="243.0" prefHeight="27.0" prefWidth="73.0" promptText="Day" />
-            <ComboBox layoutX="257.0" layoutY="243.0" prefHeight="27.0" prefWidth="83.0" promptText="Month" />
-            <ComboBox layoutX="349.0" layoutY="243.0" prefHeight="27.0" prefWidth="73.0" promptText="Year" />
-            <Text layoutX="52.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="E-mail">
+            <ComboBox layoutX="174.0" layoutY="301.0" prefHeight="27.0" prefWidth="73.0" promptText="Day" />
+            <ComboBox layoutX="257.0" layoutY="301.0" prefHeight="27.0" prefWidth="83.0" promptText="Month" />
+            <ComboBox layoutX="350.0" layoutY="301.0" prefHeight="27.0" prefWidth="73.0" promptText="Year" />
+            <Text layoutX="50.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="E-mail">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <TextField layoutX="174.0" layoutY="299.0" prefHeight="27.0" prefWidth="249.0" promptText="ex: myname@example.com " style="-fx-font-family: serif;" />
-            <Text layoutX="48.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Address">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Text>
-            <TextField layoutX="174.0" layoutY="353.0" prefHeight="27.0" prefWidth="249.0" promptText="Street Address Line 1" style="-fx-font-family: serif;" />
-            <TextField layoutX="174.0" layoutY="407.0" prefHeight="27.0" prefWidth="249.0" promptText="Street Address Line 2" style="-fx-font-family: serif;" />
-            <TextField layoutX="174.0" layoutY="464.0" prefHeight="27.0" prefWidth="131.0" promptText="City" style="-fx-font-family: serif;" />
-            <TextField layoutX="313.0" layoutY="464.0" prefHeight="27.0" prefWidth="109.0" promptText="State/Province" style="-fx-font-family: serif;" />
-            <TextField layoutX="174.0" layoutY="519.0" prefHeight="27.0" prefWidth="131.0" promptText="Postal/Zip Code" style="-fx-font-family: serif;" />
-            <ComboBox layoutX="313.0" layoutY="519.0" prefHeight="27.0" prefWidth="109.0" promptText="Country" />
-            <Button layoutX="125.0" layoutY="598.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="249.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Upload">
+            <TextField fx:id="email" layoutX="174.0" layoutY="355.0" prefHeight="27.0" prefWidth="249.0" promptText="ex: myname@example.com " style="-fx-font-family: serif;" />
+            <Button layoutX="123.0" layoutY="435.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="27.0" prefWidth="249.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Upload">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
+            <Text layoutX="44.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Last Name">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="lastName" layoutX="174.0" layoutY="187.0" prefHeight="27.0" prefWidth="249.0" promptText="Enter Last Name" style="-fx-font-family: serif;" />
          </children>
       </AnchorPane>
    </children>

@@ -1,29 +1,24 @@
 package controllers;
+
 /**
  * FXML Controller class for MainPage FXML file
  *
  * @author Amantii
- * last updated: 11/19/20
+ * last updated: 11/28/20
  */
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import view.SwitchScenes;
 
 public class MainPageController implements Initializable {
 
-    Stage stage;
-    Parent root;
-
     /**
      * Initializes the controller class.
+     *
      * @param _url
      * @param _rb
      */
@@ -32,15 +27,36 @@ public class MainPageController implements Initializable {
         // TODO
     }
 
-    @FXML
-    protected Button logout;
+    /**
+     * Returns to the login page upon clicking the logout button
+     *
+     * @param _goBack
+     * @throws IOException
+     */
+    public void returnToLogin(ActionEvent _goBack) throws IOException {
+        CreateAccountController account = new CreateAccountController();
+        account.returnToLogin(_goBack);
+    }
 
-    @FXML
-    public void returnToLogin() throws IOException {
-        stage = (Stage) logout.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("../view/SignIn.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    /**
+     * Opens new scene to have the user set an appointment
+     *
+     * @param _appointment
+     * @throws IOException
+     */
+    public void setAppointment(ActionEvent _appointment) throws IOException {
+        SwitchScenes set = new SwitchScenes();
+        set.newScene(_appointment, "SetAppointment.fxml", "Make an Appointment");
+    }
+
+    /**
+     * Opens new scene to have the user cancel an existing appointment
+     *
+     * @param _appointment
+     * @throws IOException
+     */
+    public void cancelAppointment(ActionEvent _appointment) throws IOException {
+        SwitchScenes cancel = new SwitchScenes();
+        cancel.newScene(_appointment, "CancelAppointment.fxml", "Cancel an Appointment");
     }
 }

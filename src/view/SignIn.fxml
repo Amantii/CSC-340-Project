@@ -18,13 +18,10 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <TextField fx:id="username" layoutX="70.0" layoutY="87.0" promptText="Username" style="-fx-font-family: serif; -fx-border-color: white;" />
+            <TextField fx:id="email" layoutX="70.0" layoutY="87.0" promptText="Email" style="-fx-font-family: serif; -fx-border-color: white;" />
             <PasswordField fx:id="password" layoutX="70.0" layoutY="144.0" promptText="Password" style="-fx-font-family: serif; -fx-border-color: white;" />
             <Button fx:id="submit" layoutX="122.0" layoutY="202.0" mnemonicParsing="false" onAction="#signIn" style="-fx-font-family: serif; -fx-border-color: black;" text="Submit" />
-            <Button layoutX="107.0" layoutY="249.0" mnemonicParsing="false" style="-fx-font-family: serif; -fx-border-color: black;" text="Forgot Password?">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+            <Button layoutX="96.0" layoutY="250.0" mnemonicParsing="false" onAction="#forgotPassword" style="-fx-font-family: serif; -fx-border-color: black;" text="Forgot Password?" />
             <Button fx:id="createAccount" layoutX="100.0" layoutY="343.0" mnemonicParsing="false" onAction="#createAccount" style="-fx-font-family: serif; -fx-border-color: black;" text="Create Account" />
          </children>
       </AnchorPane>

@@ -1,29 +1,27 @@
 package controllers;
+
 /**
  * FXML Controller class for CreateAccount FXML file
  *
  * @author Amantii
- * last updated: 11/19/20
+ * last updated: 11/28/20
  */
 
 import controllers.MainPageController.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import view.SwitchScenes;
 
 public class CreateAccountController implements Initializable {
-
-    Stage stage;
-    Parent root;
 
     /**
      * Initializes the controller class.
@@ -51,23 +49,48 @@ public class CreateAccountController implements Initializable {
     @FXML
     protected Button signIn;
 
-    @FXML
-    public void signUp() throws IOException {
-        //Add logic to guard against invalid or no entries for name, email, and password
-        stage = (Stage) signUp.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("../view/PatientDetails.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    /**
+     * Enters the patient details page upon clicking signUp button
+     *
+     * @param _patientDetails
+     * @throws IOException
+     */
+    public void signUp(ActionEvent _patientDetails) throws IOException {
+        if (alertBox()) {
+            SwitchScenes details = new SwitchScenes();
+            details.sceneSwitch(_patientDetails, "PatientDetails.fxml", "Enter Details");
+        }
     }
 
-    public void returnToLogin() throws IOException {
-        stage = (Stage) signIn.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("../view/SignIn.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    /**
+     * Returns to the login page when the signIn button is clicked from the
+     * create account page.
+     *
+     * @param _return
+     * @throws IOException
+     */
+    public void returnToLogin(ActionEvent _return) throws IOException {
+        SwitchScenes loginReturn = new SwitchScenes();
+        loginReturn.sceneSwitch(_return, "SignIn.fxml", "Login");
     }
 
+    /**
+     * Presents warning box if there are empty/invalid inputs
+     *
+     * @return
+     */
+    public boolean alertBox() {
+        //Logic to guard against empty inputs for each field
+        if (fullName.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty()) {
+            Alert empty = new Alert(AlertType.WARNING);
+            empty.setTitle("Invalid Entry");
+            empty.setContentText("Enter valid inputs into fields");
+            empty.setHeaderText(null);
+            empty.setTitle("Invalid entry");
+            empty.showAndWait();
 
+            return false;
+        }
+        return true;
+    }
 }

@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.CreateAccountController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAccountController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="307.0" prefHeight="402.0" prefWidth="300.0" style="-fx-background-color: #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE;">
          <children>
@@ -19,9 +18,9 @@
                   <Font size="30.0" />
                </font>
             </Text>
-            <TextField layoutX="70.0" layoutY="96.0" promptText="Full Name" style="-fx-font-family: serif;" />
-            <TextField layoutX="70.0" layoutY="148.0" promptText="E-mail" style="-fx-font-family: serif;" />
-            <PasswordField layoutX="70.0" layoutY="201.0" promptText="Password" style="-fx-font-family: serif;" />
+            <TextField fx:id="fullName" layoutX="70.0" layoutY="96.0" onAction="#signUp" promptText="Full Name" style="-fx-font-family: serif;" />
+            <TextField fx:id="email" layoutX="70.0" layoutY="148.0" onAction="#signUp" promptText="E-mail" style="-fx-font-family: serif;" />
+            <PasswordField fx:id="password" layoutX="70.0" layoutY="201.0" onAction="#signUp" promptText="Password" style="-fx-font-family: serif;" />
             <Button fx:id="signUp" layoutX="70.0" layoutY="265.0" mnemonicParsing="false" onAction="#signUp" style="-fx-font-family: serif;" text="Sign Up" />
             <Button fx:id="signIn" layoutX="176.0" layoutY="265.0" mnemonicParsing="false" onAction="#returnToLogin" style="-fx-font-family: serif;" text="Sign In" />
          </children>

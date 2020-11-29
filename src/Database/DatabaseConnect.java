@@ -1,7 +1,7 @@
 package Database;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 
