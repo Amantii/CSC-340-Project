@@ -21,7 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AppointmentApi implements appointmentAPIInterface {
+public class AppointmentApi implements AppointmentAPIInterface {
 
     /**
      *

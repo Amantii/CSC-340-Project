@@ -1,9 +1,5 @@
 package apis;
 
-import java.io.IOException;
-import java.util.Map;
-import org.json.JSONException;
-
 /**
  * appointment API Adapter class to make calls to the api given information from the AppointmentAPIAdapter.
  *
@@ -12,7 +8,11 @@ import org.json.JSONException;
  *
  * @Author Imran Al Nafiee
  */
-public class AppointmentAPIAdapter implements appointmentAPIInterface {
+import java.io.IOException;
+import java.util.Map;
+import org.json.JSONException;
+
+public class AppointmentAPIAdapter implements AppointmentAPIInterface {
 
     /**
      *

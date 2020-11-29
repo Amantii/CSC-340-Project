@@ -1,8 +1,5 @@
 package apis;
 
-import java.util.Map;
-import org.json.JSONException;
-
 /**
  * Grabs information from the appointment API
  *
@@ -10,7 +7,10 @@ import org.json.JSONException;
  *
  * @Author Imran Al Nafiee
  */
-public interface appointmentAPIInterface {
+import java.util.Map;
+import org.json.JSONException;
+
+public interface AppointmentAPIInterface {
 
     /**
      * Grabs the appointment information from the appointments API
