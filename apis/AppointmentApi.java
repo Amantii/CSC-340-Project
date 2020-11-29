@@ -3,7 +3,8 @@ package apis;
 /**
  * Class used to make calls to the www.yellowschedule.com.
  *
- * Updated November 27, 2020
+ * Updated November 29th, 2020
+ *
  *
  * @Author Imran Al Nafiee
  */

@@ -6,7 +6,7 @@ import org.json.JSONException;
 /**
  * Grabs information from the appointment API
  *
- * Updated November 27, 2020
+ * Updated November 29th, 2020
  *
  * @Author Imran Al Nafiee
  */
@@ -56,17 +56,18 @@ public interface appointmentAPIInterface {
     public static void createContact(String _firstname, String _lastname, String _email, String _cellphone) {
 
     }
+
     /**
      * Grabs the contact_id information from the contact API
+     *
      * @param _contact_id
      * @return
-     * @throws JSONException 
+     * @throws JSONException
      */
-    public static Map getContact(String _contact_id) throws JSONException{
-        
+    public static Map getContact(String _contact_id) throws JSONException {
+
         return null;
-    
-    
+
     }
 
 }

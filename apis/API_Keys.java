@@ -5,9 +5,8 @@ package apis;
  *
  * @Author Imran Al Nafiee
  *
- * Updated October 29, 2020
+ * Updated November 29th, 2020
  */
-
 public class API_Keys {
 
     public static String Appointment() {
@@ -15,11 +14,5 @@ public class API_Keys {
 
         return api_key;
     }
-    
-    
-    public static String userId(){
-    String user_id = "usr_90zdaF1UYh3UjJzV0o3NxBTU4MXSXVVZ";
 
-        return user_id;
-    }
 }
