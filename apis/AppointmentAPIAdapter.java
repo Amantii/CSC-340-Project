@@ -4,23 +4,19 @@ package apis;
  * appointment API Adapter class to make calls to the api given information from the AppointmentAPIAdapter.
  *
  *
- * Updated November 29th, 2020
+ * Updated December 1st, 2020
  *
  * @Author Imran Al Nafiee
  */
-import java.io.IOException;
-import org.json.JSONException;
-
 public class AppointmentAPIAdapter implements AppointmentAPIInterface {
 
     /**
      *
      * @param _id
      * @return
-     * @throws IOException
      */
     @Override
-    public  String getAppointments(String _id){
+    public String getAppointments(String _id) {
         String appointmentInfo;
 
         //Creates a new instance for the API request
@@ -35,17 +31,15 @@ public class AppointmentAPIAdapter implements AppointmentAPIInterface {
     /**
      *
      * @param _id
-     * @throws IOException
-     * @throws JSONException
      */
     @Override
-    public  void deleteAppointment(String _id) {
-
+    public String deleteAppointment(String _id) {
+        String info;
         AppointmentApi appt = new AppointmentApi();
 
         //deletes appointment by appointment ID
-        appt.deleteAppointment(_id);
-
+        info = appt.deleteAppointment(_id);
+        return info;
     }
 
     /**
@@ -53,16 +47,15 @@ public class AppointmentAPIAdapter implements AppointmentAPIInterface {
      * @param _startTime
      * @param _endTime
      * @param _title
-     * @throws IOException
-     * @throws JSONException
+     * @return
      */
     @Override
-    public  void makeAppointment(String _startTime, String _endTime, String _title) {
-
+    public String makeAppointment(String _startTime, String _endTime, String _title) {
+        String apptInfo;
         AppointmentApi appt = new AppointmentApi();
 
-        appt.makeAppointment(_startTime, _endTime, _title);
-
+        apptInfo = appt.makeAppointment(_startTime, _endTime, _title);
+        return apptInfo;
     }
 
     /**

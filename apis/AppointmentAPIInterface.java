@@ -3,11 +3,10 @@ package apis;
 /**
  * Grabs information from the appointment API
  *
- * Updated November 29th, 2020
+ * Updated December 1st, 2020
  *
  * @Author Imran Al Nafiee
  */
-
 public interface AppointmentAPIInterface {
 
     /**
@@ -25,17 +24,17 @@ public interface AppointmentAPIInterface {
      * @param _startTime
      * @param _endTime
      * @param _title
+     * @return
      */
-     void makeAppointment(String _startTime, String _endTime, String _title);
-
-    
+    String makeAppointment(String _startTime, String _endTime, String _title);
 
     /**
      * This is to delete appointment method;
      *
      * @param _appointmentId
+     * @return 
      */
-      void deleteAppointment(String _appointmentId);
+    String deleteAppointment(String _appointmentId);
 
     /**
      * This is to create a user in api method
@@ -49,7 +48,6 @@ public interface AppointmentAPIInterface {
     public static void createContact(String _firstname, String _lastname, String _email, String _cellphone) {
 
     }*/
-
     /**
      * Grabs the contact_id information from the contact API
      *
@@ -63,5 +61,4 @@ public interface AppointmentAPIInterface {
         return null;
 
     }*/
-
 }

@@ -3,7 +3,7 @@ package apis;
 /**
  * Class used to make calls to the www.yellowschedule.com.
  *
- * Updated November 29th, 2020
+ * Updated December 1st, 2020
  *
  *
  * @Author Imran Al Nafiee
@@ -45,10 +45,10 @@ public class AppointmentApi implements AppointmentAPIInterface {
     public static void main(String[] args) throws IOException, JSONException {
         AppointmentApi calls = new AppointmentApi();
         //createContact("Subaru", "STI", "sti@gmail.com", "123456789");
-        calls.deleteAppointment("apt_90TUBlFd5U2QrcGRVJWapJXYaNnWlF1N");
+        calls.deleteAppointment("apt_90TUvskelVVN3AXQidmWHJTcvgHbGBHa");
         //calls.getAppointments("apt_90TUPxmZPVUe25mVqFmRNh2ZNhnarBHc");
         //System.out.println(getAppointment2());
-        //calls.makeAppointment("2020-12-01 09:00:00", "2020-12-01 09:30:00", "test");  
+        //calls.makeAppointment("2020-12-01 09:00:00", "2020-12-01 09:30:00", "test");
         //System.out.println(getContact2());
         //System.out.println(getContact("con_90TUyRGcJR3V5wUTOR0LwY1SvlzcxpmV"));
     }
@@ -331,9 +331,10 @@ public class AppointmentApi implements AppointmentAPIInterface {
      * @param _startTime
      * @param _endTime
      * @param _title
+     * @return
      */
     @Override
-    public void makeAppointment(String _startTime, String _endTime, String _title) {
+    public String makeAppointment(String _startTime, String _endTime, String _title) {
 
         String urlString = yellowSchedule + callActionyellowSchedule;
         URL url;
@@ -341,7 +342,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
         String jsonData = "{\"start\":\"" + _startTime + "\",\"end\":\"" + _endTime + "\",\"title\":\"" + _title + "\",\"user_id\":\"usr_90zdaF1UYh3UjJzV0o3NxBTU4MXSXVVZ\"}";
 
         urlString = urlString + appt;
-
+        String responseResults = null;
         try {
 
             url = new URL(urlString);
@@ -364,6 +365,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
             }
 
             int responseCode = connection.getResponseCode();
+            responseResults = responseCode + "";
             System.out.println("\nSending 'POST' request to URL : " + url);
             System.out.println("Post apptId : " + jsonData);
             System.out.println("Response Code : " + responseCode);
@@ -388,6 +390,8 @@ public class AppointmentApi implements AppointmentAPIInterface {
         } catch (IOException e) {
         }
 
+        return responseResults;
+
     }
 
     /**
@@ -396,13 +400,14 @@ public class AppointmentApi implements AppointmentAPIInterface {
      * @param _id
      */
     @Override
-    public void deleteAppointment(String _id) {
+    public String deleteAppointment(String _id) {
 
         String urlString = yellowSchedule + callActionyellowSchedule;
         URL url;
 
         String appt = "appointments?" + "appointment_id=" + _id;
         urlString = urlString + appt;
+        String responseResults = null;
 
         try {
 
@@ -416,7 +421,8 @@ public class AppointmentApi implements AppointmentAPIInterface {
             connection.setRequestProperty("Authorization", "Bearer " + API_Keys.Appointment());
 
             int status = connection.getResponseCode();
-            //System.out.println(status); // to print the status for testing.
+
+            System.out.println("Response Code : " + status);
             StringBuffer responseContent = new StringBuffer();
             try (BufferedReader inputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                 String inputLine;
@@ -438,7 +444,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
         } catch (JSONException ex) {
             Logger.getLogger(AppointmentApi.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return responseResults;
     }
 
     /**
