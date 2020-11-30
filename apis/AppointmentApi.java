@@ -46,7 +46,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
         //deleteAppointment("apt_90zZJ9mQm9ST6FjVVpWORF2YBBTUnZlb");
         //System.out.println(getAppointments("apt_90TU1smdGhmcmdzQChEWkJVVQFjQR5kZ"));
         //System.out.println(getAppointment2());
-        //makeAppointment("2020-11-27 09:00:00", "2020-11-27 09:30:00", "test", "con_90TUyRGcJR3V5wUTOR0LwY1SvlzcxpmV");
+        //makeAppointment("2020-11-27 09:00:00", "2020-11-27 09:30:00", "test");
         //System.out.println(getContact2());
         //System.out.println(getContact("con_90TUyRGcJR3V5wUTOR0LwY1SvlzcxpmV"));
     }
@@ -61,6 +61,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
      * @throws IOException
      * @throws JSONException
      */
+    /*
     public static void createContact(String _firstname, String _lastname, String _email, String _cellphone) throws IOException, JSONException {
 
         String urlString = yellowSchedule + callActionyellowSchedule;
@@ -119,6 +120,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
         }
 
     }
+    */
 
     /**
      * This method is to get contact id from contact api.
@@ -126,6 +128,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
      * @param _contact_id
      * @return @throws JSONException
      */
+    /*
     public static Map getContact(String _contact_id) throws JSONException {
         String urlString = yellowSchedule + callActionyellowSchedule;
         URL url;
@@ -169,6 +172,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
         return contactData;
 
     }
+    */
 
     /**
      * for testing
@@ -328,16 +332,15 @@ public class AppointmentApi implements AppointmentAPIInterface {
      * @param _startTime
      * @param _endTime
      * @param _title
-     * @param _contact_id
      * @throws IOException
      * @throws JSONException
      */
-    public static void makeAppointment(String _startTime, String _endTime, String _title, String _contact_id) throws IOException, JSONException {
+    public static void makeAppointment(String _startTime, String _endTime, String _title) throws IOException, JSONException {
 
         String urlString = yellowSchedule + callActionyellowSchedule;
         URL url;
         String appt = "appointments?";
-        String jsonData = "{\"start\":\"" + _startTime + "\",\"end\":\"" + _endTime + "\",\"title\":\"" + _title + "\",\"contact_id\":\"" + _contact_id + "\",\"user_id\":\"usr_90zdaF1UYh3UjJzV0o3NxBTU4MXSXVVZ\"}";
+        String jsonData = "{\"start\":\"" + _startTime + "\",\"end\":\"" + _endTime + "\",\"title\":\"" + _title + "\",\"user_id\":\"usr_90zdaF1UYh3UjJzV0o3NxBTU4MXSXVVZ\"}";
 
         urlString = urlString + appt;
 

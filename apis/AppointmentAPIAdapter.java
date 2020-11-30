@@ -61,7 +61,7 @@ public class AppointmentAPIAdapter implements AppointmentAPIInterface {
 
         AppointmentApi appt = new AppointmentApi();
 
-        appt.makeAppointment(_startTime, _endTime, _title, _contact_id);
+        appt.makeAppointment(_startTime, _endTime, _title);
 
     }
 
@@ -74,6 +74,7 @@ public class AppointmentAPIAdapter implements AppointmentAPIInterface {
      * @throws IOException
      * @throws JSONException
      */
+    /*
     public static void createContact(String _firstname, String _lastname, String _email, String _cellphone) throws IOException, JSONException {
 
         AppointmentApi appt = new AppointmentApi();
@@ -81,13 +82,14 @@ public class AppointmentAPIAdapter implements AppointmentAPIInterface {
         appt.createContact(_firstname, _lastname, _email, _cellphone);
 
     }
-
+     */
     /**
      *
      * @param _contact_id
      * @return
      * @throws JSONException
      */
+    /*
     public static Map getContact(String _contact_id) throws JSONException {
 
         Map contactInfo;
@@ -100,5 +102,5 @@ public class AppointmentAPIAdapter implements AppointmentAPIInterface {
         return contactInfo;
 
     }
-
+     */
 }

@@ -8,7 +8,7 @@ package apis;
  * @Author Imran Al Nafiee
  */
 import java.util.Map;
-import org.json.JSONException;
+//import org.json.JSONException;
 
 public interface AppointmentAPIInterface {
 
@@ -53,9 +53,10 @@ public interface AppointmentAPIInterface {
      * @param _email
      * @param _cellphone
      */
+    /*
     public static void createContact(String _firstname, String _lastname, String _email, String _cellphone) {
 
-    }
+    }*/
 
     /**
      * Grabs the contact_id information from the contact API
@@ -64,10 +65,11 @@ public interface AppointmentAPIInterface {
      * @return
      * @throws JSONException
      */
+    /*
     public static Map getContact(String _contact_id) throws JSONException {
 
         return null;
 
-    }
+    }*/
 
 }
