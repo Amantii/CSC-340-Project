@@ -6,6 +6,7 @@ package controllers;
  * @author Amantii last updated: 11/29/20
  */
 import apis.AppointmentAPIAdapter;
+import apis.AppointmentApi;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import models.DeleteAppointment;
+import models.GetAppointment;
 import models.MakeAppointment;
 import view.SwitchScenes;
 
@@ -64,7 +67,7 @@ public class MainPageController implements Initializable {
     public void setAppointment(ActionEvent _appointment) throws IOException {
         SwitchScenes set = new SwitchScenes();
         set.newScene(_appointment, "SetAppointment.fxml", "Make an Appointment");
-        
+
     }
 
     /**
@@ -88,16 +91,54 @@ public class MainPageController implements Initializable {
         SwitchScenes getID = new SwitchScenes();
         getID.newScene(_userID, "UserID.fxml", "Copy your ID");
     }
-    
-    public void setApptPressed(ActionEvent _pressed) {
-        MakeAppointment make = new MakeAppointment();
-        setApptStartTime(make);
-        setApptEndTime(make);
-        setTitleText(make);
+
+    /**
+     * to get appointments data
+     *
+     * @param _apptInfo
+     */
+    /*
+    public void getAppt(GetAppointment _apptInfo) {
+        GetAppointment info = new GetAppointment();
+
+        try {
+            // Calling methods that set/get the values for use in the program
+            getAppt(info);
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+
+        }
+        AppointmentAPIAdapter get = new AppointmentAPIAdapter();
+        get.getAppointments(info.getId());
     }
 
     //=================  SETTERS ===============//
+    public void getAppt(GetAppointment _Id) {
+        _Id.setId(this.startTimeText.getText());
+    }*/
+    /**
+     * to set appointment
+     *
+     * @param _pressed
+     */
+    public void setApptPressed(ActionEvent _pressed) {
+        MakeAppointment make = new MakeAppointment();
 
+        try {
+            // Calling methods that set/get the values for use in the program
+            setApptStartTime(make);
+            setApptEndTime(make);
+            setTitleText(make);
+        } catch (Exception ex) {
+            System.out.println(ex);
+
+        }
+        AppointmentAPIAdapter appt = new AppointmentAPIAdapter();
+        appt.makeAppointment(make.getStartTime(), make.getEndTime(), make.getTitle());
+    }
+
+    //=================  SETTERS ===============//
     public void setApptStartTime(MakeAppointment _startTime) {
         _startTime.setStartTime(this.startTimeText.getText());
     }
@@ -110,28 +151,39 @@ public class MainPageController implements Initializable {
         _title.setTitle(this.titleText.getText());
     }
 
+    /**
+     * To cancel appointment
+     *
+     * @param _pressed
+     */
+    public void setCancelPressed(ActionEvent _pressed) {
+        DeleteAppointment delete = new DeleteAppointment();
 
+        try {
+            // Calling methods that set/get the values for use in the program
+            setCancelPressed(delete);
 
+        } catch (Exception ex) {
+            System.out.println(ex);
 
+        }
+        AppointmentAPIAdapter cancel = new AppointmentAPIAdapter();
+        cancel.deleteAppointment(delete.getId());
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    //=================  SETTERS ===============//
+    /**
+     *
+     * @param _Id
+     */
+    public void setCancelPressed(DeleteAppointment _Id) {
+        _Id.setId(this.startTimeText.getText());
+    }
 
     /**
-     * Copies the userID to the clipboard when the copy ID button is clicked and
-     * notifies the user that it is copied.
+     * Copies the userID to the clipboard when the copy ID button is clicked and notifies the user that it is copied.
      */
-/*
+    /*
     public void copyUserID() {
         AppointmentAPIAdapter contact = new AppointmentAPIAdapter();
         final Clipboard userID = Clipboard.getSystemClipboard();
@@ -139,11 +191,10 @@ public class MainPageController implements Initializable {
         content.putString("");
         content.putHtml("<b>Some<b> text");
         userID.setContent(content);
-
         Alert copied = new Alert(AlertType.CONFIRMATION);
         copied.setContentText("User ID has been copied");
         copied.setHeaderText(null);
         copied.showAndWait();
     }
-*/
+     */
 }

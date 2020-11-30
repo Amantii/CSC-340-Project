@@ -1,8 +1,9 @@
 package models;
 
 /**
+ * Updated December 1st, 2020
  *
- * @author Amantii
+ * @author Imran Al Nafiee
  */
 public class MakeAppointment extends APIBaseClass {
 
@@ -10,11 +11,10 @@ public class MakeAppointment extends APIBaseClass {
     protected String endTime;
     protected String title;
 
-    public void Appointment() {
+    public void MakeAppointment() {
     }
 
-    //=================  GETTERS ===============//
-
+    //=================  GETTERS ===============
     public String getStartTime() {
         return startTime;
     }
@@ -26,18 +26,18 @@ public class MakeAppointment extends APIBaseClass {
     public String getTitle() {
         return title;
     }
+    //=================  SETTERS ===============
 
-    //=================  SETTERS ===============//
-
-    public void setStartTime(String _startTime) {
-        this.startTime = _startTime;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public void setEndTime(String _endTime) {
-        this.endTime = _endTime;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public void setTitle(String _title) {
-        this.title = _title;
+    public void setTitle(String title) {
+        this.title = title;
     }
+
 }
