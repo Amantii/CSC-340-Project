@@ -19,12 +19,12 @@ public class DatabaseConnect {
     Connection connect = null;
     Statement statement = null;
 
-    static String host = "jdbc:mysql://localhost:3306/cancerApp";
+    static String host = "jdbc:mysql://localhost:3306/hospital_DB";
     static String username = "root";
     static String password = "root";
 
     public DatabaseConnect() {
-        //this.connect();
+        this.connect();
     }
 
     /*
@@ -74,7 +74,7 @@ public class DatabaseConnect {
         }
         return result;
     }
-
+*/
     private void connect() {
         try {
             this.connect = (Connection) DriverManager.getConnection(DatabaseConnect.host, DatabaseConnect.username, DatabaseConnect.password);
@@ -83,5 +83,5 @@ public class DatabaseConnect {
             System.out.println("Cannot connect to Database: " );
         }
     }
-*/
+
 }
