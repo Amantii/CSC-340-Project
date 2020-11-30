@@ -25,18 +25,25 @@ DROP TABLE IF EXISTS `appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointment` (
-  `appointment_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
+  `appointment_id` int(15) NOT NULL AUTO_INCREMENT,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
   `notes` varchar(650) DEFAULT NULL,
   `doc_id` int(11) NOT NULL,
   `pat_id` int(11) NOT NULL,
+  `pat_username` varchar(45) DEFAULT NULL,
+  `doc_username` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`appointment_id`),
+  UNIQUE KEY `appointment_id_UNIQUE` (`appointment_id`),
+  UNIQUE KEY `start_date_UNIQUE` (`start_date`),
+  UNIQUE KEY `end_date_UNIQUE` (`end_date`),
   KEY `doc_id_idx` (`doc_id`),
   KEY `pat_id_idx` (`pat_id`),
+  KEY `doc_username_idx` (`doc_username`),
+  KEY `pat_username_idx` (`pat_username`),
   CONSTRAINT `doc_id` FOREIGN KEY (`doc_id`) REFERENCES `doctor` (`doc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `pat_id` FOREIGN KEY (`pat_id`) REFERENCES `patient` (`pat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=820250 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,10 +60,12 @@ CREATE TABLE `doctor` (
   `email` varchar(45) NOT NULL,
   `specialty` varchar(45) NOT NULL,
   `phone_number` varchar(45) NOT NULL,
+  `doc_username` varchar(45) NOT NULL,
   PRIMARY KEY (`doc_id`),
-  UNIQUE KEY `doctor_id_UNIQUE` (`doc_id`),
+  UNIQUE KEY `doc_id_UNIQUE` (`doc_id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `phone_number_UNIQUE` (`phone_number`)
+  UNIQUE KEY `phone_number_UNIQUE` (`phone_number`),
+  UNIQUE KEY `doc_username_UNIQUE` (`doc_username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49495 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -77,17 +86,19 @@ CREATE TABLE `patient` (
   `city` varchar(45) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
   `zipcode` varchar(45) DEFAULT NULL,
-  `country` varchar(45) NOT NULL,
+  `country` varchar(45) DEFAULT NULL,
   `password` varchar(45) NOT NULL,
   `condition` varchar(45) NOT NULL,
-  `DOB` date NOT NULL,
-  `gender` varchar(5) NOT NULL,
-  PRIMARY KEY (`pat_id`),
+  `DOB` varchar(45) NOT NULL,
+  `gender` varchar(45) NOT NULL,
+  `pat_username` varchar(45) NOT NULL,
+  PRIMARY KEY (`pat_id`,`pat_username`),
   UNIQUE KEY `pat_id_UNIQUE` (`pat_id`),
   UNIQUE KEY `first_name_UNIQUE` (`first_name`),
   UNIQUE KEY `last_name_UNIQUE` (`last_name`),
   UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `phone_number_UNIQUE` (`phone_number`)
+  UNIQUE KEY `phone_number_UNIQUE` (`phone_number`),
+  UNIQUE KEY `username_UNIQUE` (`pat_username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,4 +119,4 @@ CREATE TABLE `patient` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-29 18:51:59
+-- Dump completed on 2020-11-30 11:03:53
