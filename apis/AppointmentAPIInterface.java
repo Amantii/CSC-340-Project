@@ -7,22 +7,17 @@ package apis;
  *
  * @Author Imran Al Nafiee
  */
-import java.util.Map;
-//import org.json.JSONException;
 
 public interface AppointmentAPIInterface {
 
     /**
      * Grabs the appointment information from the appointments API
      *
-     * @param _appointmentId
      *
+     * @param _id
      * @return an Array String with the appointment information from the API
      */
-    public static Map getAppointments(String _appointmentId) {
-
-        return null;
-    }
+    String getAppointments(String _id);
 
     /**
      * This is to make appointment method
@@ -30,20 +25,17 @@ public interface AppointmentAPIInterface {
      * @param _startTime
      * @param _endTime
      * @param _title
-     * @param _contact_id
      */
-    public static void makeAppointment(String _startTime, String _endTime, String _title, String _contact_id) {
+     void makeAppointment(String _startTime, String _endTime, String _title);
 
-    }
+    
 
     /**
      * This is to delete appointment method;
      *
      * @param _appointmentId
      */
-    public static void deleteAppointment(String _appointmentId) {
-
-    }
+      void deleteAppointment(String _appointmentId);
 
     /**
      * This is to create a user in api method

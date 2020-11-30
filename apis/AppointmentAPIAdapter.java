@@ -9,42 +9,42 @@ package apis;
  * @Author Imran Al Nafiee
  */
 import java.io.IOException;
-import java.util.Map;
 import org.json.JSONException;
 
 public class AppointmentAPIAdapter implements AppointmentAPIInterface {
 
     /**
      *
-     * @param _appointmentId
+     * @param _id
      * @return
-     * @throws JSONException
      * @throws IOException
      */
-    public static Map getAppointments(String _appointmentId) throws JSONException, IOException {
-        Map appointmentInfo;
+    @Override
+    public  String getAppointments(String _id){
+        String appointmentInfo;
 
         //Creates a new instance for the API request
         AppointmentApi appt = new AppointmentApi();
 
         //Grabs appointments from the API
-        appointmentInfo = appt.getAppointments(_appointmentId);
+        appointmentInfo = appt.getAppointments(_id);
         return appointmentInfo;
 
     }
 
     /**
      *
-     * @param _appointmentId
+     * @param _id
      * @throws IOException
      * @throws JSONException
      */
-    public static void deleteAppointment(String _appointmentId) throws IOException, JSONException {
+    @Override
+    public  void deleteAppointment(String _id) {
 
         AppointmentApi appt = new AppointmentApi();
 
         //deletes appointment by appointment ID
-        appt.deleteAppointment(_appointmentId);
+        appt.deleteAppointment(_id);
 
     }
 
@@ -53,11 +53,11 @@ public class AppointmentAPIAdapter implements AppointmentAPIInterface {
      * @param _startTime
      * @param _endTime
      * @param _title
-     * @param _contact_id
      * @throws IOException
      * @throws JSONException
      */
-    public static void makeAppointment(String _startTime, String _endTime, String _title, String _contact_id) throws IOException, JSONException {
+    @Override
+    public  void makeAppointment(String _startTime, String _endTime, String _title) {
 
         AppointmentApi appt = new AppointmentApi();
 

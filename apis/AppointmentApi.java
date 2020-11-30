@@ -17,6 +17,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,12 +43,12 @@ public class AppointmentApi implements AppointmentAPIInterface {
      * @throws JSONException
      */
     public static void main(String[] args) throws IOException, JSONException {
-
+        AppointmentApi calls = new AppointmentApi();
         //createContact("Subaru", "STI", "sti@gmail.com", "123456789");
-        //deleteAppointment("apt_90zZJ9mQm9ST6FjVVpWORF2YBBTUnZlb");
-        //System.out.println(getAppointments("apt_90TU1smdGhmcmdzQChEWkJVVQFjQR5kZ"));
+        calls.deleteAppointment("apt_90TUBlFd5U2QrcGRVJWapJXYaNnWlF1N");
+        //calls.getAppointments("apt_90TUPxmZPVUe25mVqFmRNh2ZNhnarBHc");
         //System.out.println(getAppointment2());
-        //makeAppointment("2020-11-27 09:00:00", "2020-11-27 09:30:00", "test");
+        //calls.makeAppointment("2020-12-01 09:00:00", "2020-12-01 09:30:00", "test");  
         //System.out.println(getContact2());
         //System.out.println(getContact("con_90TUyRGcJR3V5wUTOR0LwY1SvlzcxpmV"));
     }
@@ -120,8 +122,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
         }
 
     }
-    */
-
+     */
     /**
      * This method is to get contact id from contact api.
      *
@@ -172,8 +173,7 @@ public class AppointmentApi implements AppointmentAPIInterface {
         return contactData;
 
     }
-    */
-
+     */
     /**
      * for testing
      *
@@ -227,19 +227,17 @@ public class AppointmentApi implements AppointmentAPIInterface {
     /**
      * This method is to get appointment information from the api
      *
-     * @param _appointmentId
+     * @param _id
      * @return
-     * @throws IOException
-     * @throws JSONException
      */
-    public static Map getAppointments(String _appointmentId) throws IOException, JSONException {
+    @Override
+    public String getAppointments(String _id) {
 
         String urlString = yellowSchedule + callActionyellowSchedule;
         URL url;
-
-        String appt = "appointments?" + "appointment_id=" + _appointmentId;
+        String apptData = null;
+        String appt = "appointments?" + "appointment_id=" + _id;
         urlString = urlString + appt;
-        Map<String, String> apptData = new HashMap<>();
         try {
 
             //request setup
@@ -271,6 +269,8 @@ public class AppointmentApi implements AppointmentAPIInterface {
 
         } catch (MalformedURLException e) {
         } catch (IOException e) {
+        } catch (JSONException ex) {
+            Logger.getLogger(AppointmentApi.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return apptData;
@@ -283,15 +283,14 @@ public class AppointmentApi implements AppointmentAPIInterface {
      * @throws IOException
      * @throws JSONException
      */
-    /*
-    public static Map getAppointment2() throws IOException, JSONException {
+    public static String getAppointment2() throws IOException, JSONException {
 
         String urlString = yellowSchedule + callActionyellowSchedule;
         URL url;
-
+        String apptData = null;
         String apptId = "appointments?" + "range_start=2020-09-20%2008:00:00&range_end=2020-12-30%2017:00:00";
         urlString = urlString + apptId;
-        Map<String, String> apptData = new HashMap<>();
+
         try {
 
             //request setup
@@ -325,17 +324,16 @@ public class AppointmentApi implements AppointmentAPIInterface {
         }
         return apptData;
     }
-     */
+
     /**
      * to make appointment
      *
      * @param _startTime
      * @param _endTime
      * @param _title
-     * @throws IOException
-     * @throws JSONException
      */
-    public static void makeAppointment(String _startTime, String _endTime, String _title) throws IOException, JSONException {
+    @Override
+    public void makeAppointment(String _startTime, String _endTime, String _title) {
 
         String urlString = yellowSchedule + callActionyellowSchedule;
         URL url;
@@ -395,16 +393,15 @@ public class AppointmentApi implements AppointmentAPIInterface {
     /**
      * Delete appointments
      *
-     * @param _appointmentId
-     * @throws IOException
-     * @throws JSONException
+     * @param _id
      */
-    public static void deleteAppointment(String _appointmentId) throws IOException, JSONException {
+    @Override
+    public void deleteAppointment(String _id) {
 
         String urlString = yellowSchedule + callActionyellowSchedule;
         URL url;
 
-        String appt = "appointments?" + "appointment_id=" + _appointmentId;
+        String appt = "appointments?" + "appointment_id=" + _id;
         urlString = urlString + appt;
 
         try {
@@ -438,6 +435,8 @@ public class AppointmentApi implements AppointmentAPIInterface {
 
         } catch (MalformedURLException e) {
         } catch (IOException e) {
+        } catch (JSONException ex) {
+            Logger.getLogger(AppointmentApi.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -449,28 +448,25 @@ public class AppointmentApi implements AppointmentAPIInterface {
      * @return
      * @throws JSONException
      */
-    public static Map appointments(String _response) throws JSONException {
+    public static String appointments(String _response) throws JSONException {
         JSONObject obj = new JSONObject(_response);
         JSONArray info = obj.getJSONArray("appointments");
-        Map<String, String> apptData = new HashMap<>();
+        String apptData = null;
         for (int i = 0; i < info.length(); i++) {
             JSONObject appointment = info.getJSONObject(i);
-            String id = appointment.getString("id");
-            apptData.put("appointment_id", id);
-            //String user_id = appointment.getString("user_id");
-            //apptData.put("user_id", user_id);
-            String title = appointment.getString("title");
-            apptData.put("title", title);
-            String date = appointment.getString("created");
-            apptData.put("created date", date);
-            String start = appointment.getString("start");
-            apptData.put("start time", start);
-            String end = appointment.getString("end");
-            apptData.put("end time", end);
-            String note = appointment.getString("note");
-            apptData.put("note", note);
-            //String appointmentStatus = appointment.getString("contact_status");
-            //apptData = apptData + "Satus: " + appointmentStatus + "\n";
+            apptData = appointment.getString("id");
+            System.out.println("Appointment Id: " + apptData);
+            apptData = appointment.getString("title");
+            System.out.println("title: " + apptData);
+            apptData = appointment.getString("created");
+            System.out.println("created: " + apptData);
+            apptData = appointment.getString("start");
+            System.out.println("start: " + apptData);
+            apptData = appointment.getString("end");
+            System.out.println("end: " + apptData);
+            apptData = appointment.getString("note");
+            System.out.println("note: " + apptData);
+            System.out.println(" ");
 
         }
         return apptData;
@@ -497,5 +493,4 @@ public class AppointmentApi implements AppointmentAPIInterface {
         return contactData;
 
     }
-
 }
