@@ -86,7 +86,6 @@ public class CreateAccountController implements Initializable {
             empty.setTitle("Invalid Entry");
             empty.setContentText("Enter valid inputs into fields");
             empty.setHeaderText(null);
-            empty.setTitle("Invalid entry");
             empty.showAndWait();
 
             return false;

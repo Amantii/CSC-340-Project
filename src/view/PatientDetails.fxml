@@ -30,7 +30,6 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <ComboBox layoutX="174.0" layoutY="243.0" prefHeight="27.0" prefWidth="249.0" />
             <Text layoutX="37.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Date of Birth">
                <font>
                   <Font size="15.0" />
@@ -56,6 +55,7 @@
                </font>
             </Text>
             <TextField fx:id="lastName" layoutX="174.0" layoutY="187.0" prefHeight="27.0" prefWidth="249.0" promptText="Enter Last Name" style="-fx-font-family: serif;" />
+            <TextField layoutX="174.0" layoutY="243.0" prefHeight="27.0" prefWidth="211.0" promptText="ex: Male, Female, Non-Binary" />
          </children>
       </AnchorPane>
    </children>

@@ -28,13 +28,13 @@ public class PatientDetailsController implements Initializable {
     public void initialize(URL _url, ResourceBundle _rb) {
         // TODO
     }
-    
+
     @FXML
     protected TextField firstName;
-    
+
     @FXML
     protected TextField lastName;
-    
+
     @FXML
     protected TextField email;
 
@@ -48,14 +48,14 @@ public class PatientDetailsController implements Initializable {
         SwitchScenes change = new SwitchScenes();
         change.sceneSwitch(_login, "SignIn.fxml", "Login for the first time");
     }
-    
-    
+
+
     //Figure out how to check fields for patient details page
     public boolean checkFields(ActionEvent _check) {
         if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || email.getText().isEmpty()) {
             CreateAccountController patient = new CreateAccountController();
             patient.alertBox();
-            
+
             return true;
         }
         return false;
