@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE #E7DEDE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainPageController">
+   <children>
+      <Text layoutX="58.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Cancel an Appointment">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text layoutX="137.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: serif;" text="Appointment ID">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="164.0" layoutY="243.0" mnemonicParsing="false" onAction="#setCancelPressed" prefHeight="27.0" prefWidth="72.0" style="-fx-font-family: serif;" text="Cancel">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="apptID" layoutX="120.0" layoutY="137.0" promptText="Enter Appt ID" style="-fx-font-family: serif; -fx-border-color: black;" />
+   </children>
+</AnchorPane>
