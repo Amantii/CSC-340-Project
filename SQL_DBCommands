@@ -1,0 +1,43 @@
+//SQL Commands for Database
+
+CREATE DATABASE hospital_DB;
+
+use hospital_DB;
+
+CREATE TABLE cancer_patient (
+  patient_id int NOT NULL AUTO_INCREMENT,
+  firstname varchar(45) NOT NULL,
+  lastname varchar(45) NOT NULL,
+  email varchar(225) NOT NULL,
+  password varchar(50) NOT NULL,
+  PRIMARY KEY (patient_id),
+  UNIQUE KEY email_UNIQUE (email),
+  UNIQUE KEY password_UNIQUE (password)
+)
+
+CREATE TABLE create_appt (
+  patient_id int NOT NULL AUTO_INCREMENT,
+  start varchar(50) NOT NULL,
+  end varchar(50) NOT NULL,
+  title varchar(20) NOT NULL,
+  PRIMARY KEY (patient_id),
+  CONSTRAINT patient_id FOREIGN KEY (patient_id) REFERENCES cancer_patient (patient_id) ON DELETE CASCADE
+)
+
+CREATE TABLE get_appt (
+  user_id int NOT NULL AUTO_INCREMENT,
+  appt_id varchar(60) NOT NULL,
+  PRIMARY KEY (user_id),
+  UNIQUE KEY appt_id_UNIQUE (appt_id),
+  CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES cancer_patient (patient_id) ON DELETE CASCADE
+)
+
+CREATE TABLE patient_details (
+  details_id int NOT NULL,
+  firstname varchar(45) NOT NULL,
+  lastname varchar(45) NOT NULL,
+  gender varchar(10) DEFAULT NULL,
+  dob int NOT NULL,
+  PRIMARY KEY (details_id),
+  CONSTRAINT details_id FOREIGN KEY (details_id`) REFERENCES cancer_patient (patient_id) ON DELETE CASCADE
+)
