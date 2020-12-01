@@ -1,9 +1,11 @@
 package models;
 
 /**
- * Updated December 1st, 2020
  *
- * @author Imran Al Nafiee
+ *
+ * @author Amantii
+ * @author Imran Al Nafiee last
+ * updated: 12/01/20
  */
 public class DeleteAppointment extends APIBaseClass {
 

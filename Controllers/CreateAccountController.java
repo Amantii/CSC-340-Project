@@ -3,19 +3,17 @@ package controllers;
 /**
  * FXML Controller class for CreateAccount FXML file
  *
- * @author Amantii
- * last updated: 11/28/20
+ * @author Amantii last updated: 11/28/20
  */
-
-import controllers.MainPageController.*;
+import Database.ConnectDB;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -35,7 +33,10 @@ public class CreateAccountController implements Initializable {
     }
 
     @FXML
-    protected TextField fullName;
+    protected TextField firstname;
+
+    @FXML
+    protected TextField lastname;
 
     @FXML
     protected TextField email;
@@ -50,13 +51,28 @@ public class CreateAccountController implements Initializable {
     protected Button signIn;
 
     /**
-     * Enters the patient details page upon clicking signUp button
+     * Enters the patient details page upon creating new user and checks if
+     * fields are empty.
      *
      * @param _patientDetails
      * @throws IOException
+     * @throws java.sql.SQLException
      */
-    public void signUp(ActionEvent _patientDetails) throws IOException {
-        if (alertBox()) {
+    public void signUp(ActionEvent _patientDetails) throws IOException, SQLException {
+        //Checks if fields are empty, if not saves user and goes to details page
+        if (firstname.getText().isEmpty() || lastname.getText().isEmpty() ||
+                email.getText().isEmpty() || password.getText().isEmpty()) {
+            displayAlerts(Alert.AlertType.WARNING, "Invalid Entry",
+                    "Enter valid inputs into fields");
+        }
+        else {
+            ConnectDB connect = new ConnectDB();
+            connect.accountInsertion(firstname.getText(), lastname.getText(),
+                    email.getText(), password.getText());
+
+            displayAlerts(Alert.AlertType.CONFIRMATION, "Added",
+                    "Account was created successfully");
+
             SwitchScenes details = new SwitchScenes();
             details.sceneSwitch(_patientDetails, "PatientDetails.fxml", "Enter Details");
         }
@@ -75,21 +91,17 @@ public class CreateAccountController implements Initializable {
     }
 
     /**
-     * Presents warning box if there are empty/invalid inputs
+     * Method that creates specified alerts based upon set parameters.
      *
-     * @return
+     * @param _type
+     * @param _title
+     * @param _msg
      */
-    public boolean alertBox() {
-        //Logic to guard against empty inputs for each field
-        if (fullName.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty()) {
-            Alert empty = new Alert(AlertType.WARNING);
-            empty.setTitle("Invalid Entry");
-            empty.setContentText("Enter valid inputs into fields");
-            empty.setHeaderText(null);
-            empty.showAndWait();
-
-            return false;
-        }
-        return true;
+    public void displayAlerts(Alert.AlertType _type, String _title, String _msg) {
+        Alert alert = new Alert(_type);
+        alert.setTitle(_title);
+        alert.setHeaderText(null);
+        alert.setContentText(_msg);
+        alert.showAndWait();
     }
 }

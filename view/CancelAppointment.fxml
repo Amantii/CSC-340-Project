@@ -18,11 +18,11 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Button layoutX="164.0" layoutY="243.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" style="-fx-font-family: serif;" text="Cancel">
+      <Button layoutX="164.0" layoutY="243.0" mnemonicParsing="false" onAction="#setCancelPressed" prefHeight="27.0" prefWidth="72.0" style="-fx-font-family: serif;" text="Cancel">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField layoutX="120.0" layoutY="137.0" promptText="Enter Appt ID" style="-fx-font-family: serif; -fx-border-color: black;" />
+      <TextField fx:id="apptID" layoutX="120.0" layoutY="137.0" promptText="Enter Appt ID" style="-fx-font-family: serif; -fx-border-color: black;" />
    </children>
 </AnchorPane>

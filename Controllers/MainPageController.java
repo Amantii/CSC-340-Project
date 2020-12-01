@@ -3,40 +3,32 @@ package controllers;
 /**
  * FXML Controller class for MainPage FXML file
  *
- * @author Amantii last updated: 11/29/20
+ * @author Amantii
+ * @author Imran Al Nafiee
+ * last updated: 12/01/20
  */
+import Database.ConnectDB;
 import apis.AppointmentAPIAdapter;
-import apis.AppointmentApi;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import models.DeleteAppointment;
-import models.GetAppointment;
+import models.GetAllAppt;
 import models.MakeAppointment;
 import view.SwitchScenes;
 
 public class MainPageController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     *
-     * @param _url
-     * @param _rb
-     */
-    @Override
-    public void initialize(URL _url, ResourceBundle _rb) {
-        // TODO
-    }
+    CreateAccountController alert = new CreateAccountController();
 
     @FXML
     protected TextField startTimeText;
@@ -46,6 +38,27 @@ public class MainPageController implements Initializable {
 
     @FXML
     protected TextField titleText;
+
+    @FXML
+    protected TextField apptID;
+
+    @FXML
+    protected TableView<GetAllAppt> mainTable;
+
+    @FXML
+    protected TableColumn<GetAllAppt, String> idCol;
+
+    @FXML
+    protected TableColumn<GetAllAppt, String> titleCol;
+
+    @FXML
+    protected TableColumn<GetAllAppt, String> startTimeCol;
+
+    @FXML
+    protected TableColumn<GetAllAppt, String> endTimeCol;
+
+    @FXML
+    protected TableColumn<GetAllAppt, String> noteCol;
 
     /**
      * Returns to the login page upon clicking the logout button.
@@ -92,27 +105,28 @@ public class MainPageController implements Initializable {
         getID.newScene(_userID, "UserID.fxml", "Copy your ID");
     }
 
-    /**
+    public void getAppointmentData(ActionEvent _get) throws IOException {
+        SwitchScenes getAppt = new SwitchScenes();
+        getAppt.newScene(_get, "GetAppointments.fxml", "Test View");
+    }
+
+    /*
      * to get appointments data
      *
      * @param _apptInfo
      */
-    /*
-    public void getAppt(GetAppointment _apptInfo) {
-        GetAppointment info = new GetAppointment();
+    public ArrayList<GetAllAppt> apptList() throws SQLException {
+        ArrayList<GetAllAppt> apptList = new ArrayList<>();
+        GetAllAppt info = new GetAllAppt();
+        ConnectDB connect = new ConnectDB();
+        connect.GetAllAppt();
 
-        try {
-            // Calling methods that set/get the values for use in the program
-            getAppt(info);
-
-        } catch (Exception ex) {
-            System.out.println(ex);
-
-        }
         AppointmentAPIAdapter get = new AppointmentAPIAdapter();
-        get.getAppointments(info.getId());
+        get.getAppointment();
+        return null;
     }
 
+    /*
     //=================  SETTERS ===============//
     public void getAppt(GetAppointment _Id) {
         _Id.setId(this.startTimeText.getText());
@@ -121,21 +135,34 @@ public class MainPageController implements Initializable {
      * to set appointment
      *
      * @param _pressed
+     * @throws java.sql.SQLException
      */
-    public void setApptPressed(ActionEvent _pressed) {
+    public void setApptPressed(ActionEvent _pressed) throws SQLException {
+        String apptId;
         MakeAppointment make = new MakeAppointment();
+        if (startTimeText.getText().isEmpty() || endTimeText.getText().isEmpty()
+                || titleText.getText().isEmpty()) {
+            alert.displayAlerts(Alert.AlertType.WARNING, "Invalid Entry",
+                    "Enter valid inputs into fields");
+        } else {
+            ConnectDB connect = new ConnectDB();
 
-        try {
-            // Calling methods that set/get the values for use in the program
-            setApptStartTime(make);
-            setApptEndTime(make);
-            setTitleText(make);
-        } catch (Exception ex) {
-            System.out.println(ex);
-
+            alert.displayAlerts(Alert.AlertType.CONFIRMATION, "Added",
+                    "Appointment created successfully");
+            try {
+                // Calling methods that set/get the values for use in the program
+                setApptStartTime(make);
+                setApptEndTime(make);
+                setTitleText(make);
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+            AppointmentAPIAdapter appt = new AppointmentAPIAdapter();
+            apptId = appt.makeAppointment(make.getStartTime(), make.getEndTime(), make.getTitle());
+            connect.apptInsertion(startTimeText.getText(), endTimeText.getText(),
+                    titleText.getText(), apptId);
         }
-        AppointmentAPIAdapter appt = new AppointmentAPIAdapter();
-        appt.makeAppointment(make.getStartTime(), make.getEndTime(), make.getTitle());
+
     }
 
     //=================  SETTERS ===============//
@@ -156,19 +183,30 @@ public class MainPageController implements Initializable {
      *
      * @param _pressed
      */
-    public void setCancelPressed(ActionEvent _pressed) {
+    public void setCancelPressed(ActionEvent _pressed) throws SQLException {
         DeleteAppointment delete = new DeleteAppointment();
+        if (apptID.getText().isEmpty()) {
+            alert.displayAlerts(Alert.AlertType.WARNING, "Invalid Entry",
+                    "Enter valid inputs into fields");
+        } else {
 
-        try {
-            // Calling methods that set/get the values for use in the program
-            setCancelPressed(delete);
+            ConnectDB connect = new ConnectDB();
 
-        } catch (Exception ex) {
-            System.out.println(ex);
+            alert.displayAlerts(Alert.AlertType.CONFIRMATION, "Deleted",
+                    "Appointment deleted successfully");
 
+            try {
+                // Calling methods that set/get the values for use in the program
+                setCancelPressed(delete);
+
+            } catch (Exception ex) {
+                System.out.println(ex);
+
+            }
+            AppointmentAPIAdapter cancel = new AppointmentAPIAdapter();
+            cancel.deleteAppointment(delete.getId());
+            connect.deleteAppt(apptID.getText());
         }
-        AppointmentAPIAdapter cancel = new AppointmentAPIAdapter();
-        cancel.deleteAppointment(delete.getId());
     }
 
     //=================  SETTERS ===============//
@@ -177,7 +215,7 @@ public class MainPageController implements Initializable {
      * @param _Id
      */
     public void setCancelPressed(DeleteAppointment _Id) {
-        _Id.setId(this.startTimeText.getText());
+        _Id.setId(this.apptID.getText());
     }
 
     /**
@@ -197,4 +235,14 @@ public class MainPageController implements Initializable {
         copied.showAndWait();
     }
      */
+    /**
+     * Initializes the controller class.
+     *
+     * @param _url
+     * @param _rb
+     */
+    @Override
+    public void initialize(URL _url, ResourceBundle _rb) {
+
+    }
 }

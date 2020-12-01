@@ -18,11 +18,12 @@
                   <Font size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="fullName" layoutX="70.0" layoutY="96.0" onAction="#signUp" promptText="Full Name" style="-fx-font-family: serif;" />
-            <TextField fx:id="email" layoutX="70.0" layoutY="148.0" onAction="#signUp" promptText="E-mail" style="-fx-font-family: serif;" />
-            <PasswordField fx:id="password" layoutX="70.0" layoutY="201.0" onAction="#signUp" promptText="Password" style="-fx-font-family: serif;" />
-            <Button fx:id="signUp" layoutX="70.0" layoutY="265.0" mnemonicParsing="false" onAction="#signUp" style="-fx-font-family: serif;" text="Sign Up" />
-            <Button fx:id="signIn" layoutX="176.0" layoutY="265.0" mnemonicParsing="false" onAction="#returnToLogin" style="-fx-font-family: serif;" text="Sign In" />
+            <TextField fx:id="lastname" layoutX="70.0" layoutY="142.0" onAction="#signUp" promptText="Last Name" style="-fx-font-family: serif;" />
+            <TextField fx:id="email" layoutX="70.0" layoutY="189.0" onAction="#signUp" promptText="E-mail" style="-fx-font-family: serif;" />
+            <PasswordField fx:id="password" layoutX="70.0" layoutY="239.0" onAction="#signUp" promptText="Password" style="-fx-font-family: serif;" />
+            <Button fx:id="signUp" layoutX="70.0" layoutY="305.0" mnemonicParsing="false" onAction="#signUp" style="-fx-font-family: serif;" text="Sign Up" />
+            <Button fx:id="signIn" layoutX="178.0" layoutY="305.0" mnemonicParsing="false" onAction="#returnToLogin" style="-fx-font-family: serif;" text="Sign In" />
+            <TextField fx:id="firstname" layoutX="70.0" layoutY="96.0" onAction="#signUp" promptText="First Name" style="-fx-font-family: serif;" />
          </children>
       </AnchorPane>
       <AnchorPane id="AnchorPane" prefHeight="402.0" prefWidth="308.0" style="-fx-background-color: #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1;">
