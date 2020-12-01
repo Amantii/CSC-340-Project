@@ -63,20 +63,19 @@ public class CreateAccountController implements Initializable {
      * @throws java.sql.SQLException
      */
     public void signUp(ActionEvent _patientDetails) throws IOException, SQLException {
-        //Logic to check if createAccount fields are empty and displays alert box accordingly
-        if (firstname.getText().isEmpty() || lastname.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty()) {
-            displayAlerts(Alert.AlertType.WARNING, "Invalid Entry", "Enter valid inputs into fields");
+        //Checks if fields are empty, if not saves user and goes to details page
+        if (firstname.getText().isEmpty() || lastname.getText().isEmpty() ||
+                email.getText().isEmpty() || password.getText().isEmpty()) {
+            displayAlerts(Alert.AlertType.WARNING, "Invalid Entry",
+                    "Enter valid inputs into fields");
         }
         else {
-            String firstName = firstname.getText();
-            String lastName = lastname.getText();
-            String userEmail = email.getText();
-            String userPass = password.getText();
-
             ConnectDB connect = new ConnectDB();
-            connect.accountInsertion(firstName, lastName, userEmail, userPass);
+            connect.accountInsertion(firstname.getText(), lastname.getText(),
+                    email.getText(), password.getText());
 
-            displayAlerts(Alert.AlertType.CONFIRMATION, "Added", "Account was created successfully");
+            displayAlerts(Alert.AlertType.CONFIRMATION, "Added",
+                    "Account was created successfully");
 
             SwitchScenes details = new SwitchScenes();
             details.sceneSwitch(_patientDetails, "PatientDetails.fxml", "Enter Details");

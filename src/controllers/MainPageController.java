@@ -5,10 +5,12 @@ package controllers;
  *
  * @author Amantii last updated: 11/29/20
  */
+import Database.ConnectDB;
 import apis.AppointmentAPIAdapter;
 import apis.AppointmentApi;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -32,6 +33,8 @@ import models.RetrieveAppointment;
 import view.SwitchScenes;
 
 public class MainPageController implements Initializable {
+
+    CreateAccountController alert = new CreateAccountController();
 
     @FXML
     protected TextField startTimeText;
@@ -156,21 +159,35 @@ public class MainPageController implements Initializable {
      * to set appointment
      *
      * @param _pressed
+     * @throws java.sql.SQLException
      */
-    public void setApptPressed(ActionEvent _pressed) {
+    public void setApptPressed(ActionEvent _pressed) throws SQLException {
         MakeAppointment make = new MakeAppointment();
+        if (startTimeText.getText().isEmpty() || endTimeText.getText().isEmpty()
+                || titleText.getText().isEmpty()) {
+            alert.displayAlerts(Alert.AlertType.WARNING, "Invalid Entry",
+                    "Enter valid inputs into fields");
+        }
+        else {
+            ConnectDB connect = new ConnectDB();
+            connect.apptInsertion(startTimeText.getText(), endTimeText.getText(),
+                    titleText.getText());
 
-        try {
+            alert.displayAlerts(Alert.AlertType.CONFIRMATION, "Added",
+                    "Appointment created successfully");
+            try {
             // Calling methods that set/get the values for use in the program
             setApptStartTime(make);
             setApptEndTime(make);
             setTitleText(make);
-        } catch (Exception ex) {
+        }
+            catch (Exception ex) {
             System.out.println(ex);
-
         }
         AppointmentAPIAdapter appt = new AppointmentAPIAdapter();
         appt.makeAppointment(make.getStartTime(), make.getEndTime(), make.getTitle());
+        }
+
     }
 
     //=================  SETTERS ===============//

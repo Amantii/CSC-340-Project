@@ -52,9 +52,11 @@ public class PatientDetailsController implements Initializable {
      * @throws java.sql.SQLException
      */
     public void goToLogin(ActionEvent _login) throws IOException, SQLException {
+        //Checks if fields are empty, if not saves patient and goes to signin page
         if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || gender.getText().isEmpty() || dob.getText().isEmpty()) {
             patient.displayAlerts(Alert.AlertType.WARNING, "Invalid Entry", "Enter valid inputs into fields");
-        } else {
+        }
+        else {
             String fn = firstName.getText();
             String ln = lastName.getText();
             String userGender = gender.getText();
@@ -64,9 +66,10 @@ public class PatientDetailsController implements Initializable {
             connect.patientDetailsInsertion(fn, ln, userGender, userDob);
 
             patient.displayAlerts(Alert.AlertType.CONFIRMATION, "Added", "Account was created successfully");
+
+            SwitchScenes change = new SwitchScenes();
+            change.sceneSwitch(_login, "SignIn.fxml", "Login for the first time");
         }
-        SwitchScenes change = new SwitchScenes();
-        change.sceneSwitch(_login, "SignIn.fxml", "Login for the first time");
     }
 
     //Figure out how to check fields for patient details page

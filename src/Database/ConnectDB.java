@@ -18,8 +18,6 @@ public class ConnectDB {
     static final String host = "jdbc:mysql://localhost:3306/hospital_DB";
     static final String user = "root";
     static final String password = "password";
-    static final String insert = "INSERT INTO cancer_patient(firstname,lastname,email,password) VALUES(?,?,?,?)";
-    static final String detailsInsert = "INSERT INTO patient_details(firstname,lastname,gender,dob) VALUES(?,?,?,?)";
 
     public ConnectDB() {
         this.connection();
@@ -35,6 +33,7 @@ public class ConnectDB {
      * @throws SQLException
      */
     public void accountInsertion(String _firstname, String _lastname, String _email, String _password) throws SQLException {
+        String insert = "INSERT INTO cancer_patient(firstname,lastname,email,password) VALUES(?,?,?,?)";
         ps = (PreparedStatement) connect.prepareStatement(insert);
         ps.setString(1, _firstname);
         ps.setString(2, _lastname);
@@ -47,6 +46,7 @@ public class ConnectDB {
     }
 
     public void patientDetailsInsertion(String _firstname, String _lastname, String _gender, String _dob) throws SQLException {
+        String detailsInsert = "INSERT INTO patient_details(firstname,lastname,gender,dob) VALUES(?,?,?,?)";
         ps = (PreparedStatement) connect.prepareStatement(detailsInsert);
         ps.setString(1, _firstname);
         ps.setString(2, _lastname);
@@ -55,6 +55,21 @@ public class ConnectDB {
 
         System.out.println(ps);
         ps.executeUpdate();
+    }
+
+    public void apptInsertion(String _start, String _end, String _title) throws SQLException {
+        String apptInsert = "INSERT INTO create_appt(start,end,title) VALUES(?,?,?)";
+        ps = (PreparedStatement) connect.prepareStatement(apptInsert);
+        ps.setString(1, _start);
+        ps.setString(2, _end);
+        ps.setString(3, _title);
+
+        System.out.println(ps);
+        ps.executeUpdate();
+    }
+
+    public void deleteAppt(String _start, String _end, String _title) {
+        String deleteInsert = "";
     }
 
     /**
