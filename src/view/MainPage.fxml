@@ -11,20 +11,21 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1 #C7A1A1#C7A1A1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainPageController">
    <children>
-      <TableView layoutX="14.0" layoutY="82.0" prefHeight="404.0" prefWidth="446.0">
+      <TableView fx:id="mainTable" layoutX="14.0" layoutY="82.0" prefHeight="404.0" prefWidth="500.0">
         <columns>
-          <TableColumn prefWidth="115.0" text="Patient" />
-          <TableColumn prefWidth="86.0" text="Date" />
-            <TableColumn prefWidth="103.0" text="Meeting Type" />
-            <TableColumn prefWidth="141.0" text="Description" />
+          <TableColumn fx:id="idCol" prefWidth="115.0" text="Appt ID" />
+          <TableColumn fx:id="titleCol" prefWidth="96.0" text="Title" />
+            <TableColumn fx:id="startTimeCol" prefWidth="77.0" text="Start Time" />
+            <TableColumn fx:id="endTimeCol" prefWidth="81.0" text="End Time" />
+            <TableColumn fx:id="noteCol" prefWidth="130.0" text="Note" />
         </columns>
       </TableView>
-      <Button layoutX="500.0" layoutY="157.0" mnemonicParsing="false" onAction="#setAppointment" prefHeight="44.0" prefWidth="161.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Set Appointment">
+      <Button layoutX="530.0" layoutY="157.0" mnemonicParsing="false" onAction="#setAppointment" prefHeight="44.0" prefWidth="161.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Set Appointment">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="500.0" layoutY="284.0" mnemonicParsing="false" onAction="#cancelAppointment" prefHeight="44.0" prefWidth="161.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Cancel Appointment">
+      <Button layoutX="530.0" layoutY="284.0" mnemonicParsing="false" onAction="#cancelAppointment" prefHeight="44.0" prefWidth="161.0" style="-fx-font-family: serif; -fx-border-color: black;" text="Cancel Appointment">
          <font>
             <Font size="15.0" />
          </font>

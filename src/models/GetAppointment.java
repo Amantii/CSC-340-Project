@@ -1,24 +1,28 @@
 package models;
 
+import javafx.beans.property.SimpleStringProperty;
+
 /**
- *Updated December 1st, 2020
+ * Updated December 1st, 2020
  *
  * @author Imran Al Nafiee
  */
 public class GetAppointment extends APIBaseClass {
 
-    protected String id;
+    protected SimpleStringProperty id;
 
-    public void GetAppointment() {
+    
+    public GetAppointment(String id) {
+        this.id = new SimpleStringProperty(id);
     }
     //=================  GETTERS ===============
 
     public String getId() {
-        return id;
+        return id.get();
     }
 
     //=================  SETTERS ===============
-    public void setId(String id) {
+    public void setId(SimpleStringProperty id) {
         this.id = id;
     }
 
@@ -27,6 +31,7 @@ public class GetAppointment extends APIBaseClass {
      * @param _id
      * @return
      */
+    /*
     public static GetAppointment getAppointments(String _id) {
         GetAppointment appt = new GetAppointment();
         appt.setId(_id);
@@ -37,5 +42,5 @@ public class GetAppointment extends APIBaseClass {
         appt.setId(id);
         return appt;
     }
-
+     */
 }

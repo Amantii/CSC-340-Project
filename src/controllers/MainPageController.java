@@ -10,6 +10,8 @@ import apis.AppointmentApi;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,26 +19,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import models.DeleteAppointment;
 import models.GetAppointment;
 import models.MakeAppointment;
+import models.RetrieveAppointment;
 import view.SwitchScenes;
 
 public class MainPageController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     *
-     * @param _url
-     * @param _rb
-     */
-    @Override
-    public void initialize(URL _url, ResourceBundle _rb) {
-        // TODO
-    }
 
     @FXML
     protected TextField startTimeText;
@@ -46,9 +41,27 @@ public class MainPageController implements Initializable {
 
     @FXML
     protected TextField titleText;
-    
+
     @FXML
     protected TextField apptID;
+
+    @FXML
+    protected TableView<GetAppointment> mainTable;
+
+    @FXML
+    protected TableColumn<GetAppointment, String> idCol;
+
+    @FXML
+    protected TableColumn<GetAppointment, String> titleCol;
+
+    @FXML
+    protected TableColumn<GetAppointment, String> startTimeCol;
+
+    @FXML
+    protected TableColumn<GetAppointment, String> endTimeCol;
+
+    @FXML
+    protected TableColumn<GetAppointment, String> noteCol;
 
     /**
      * Returns to the login page upon clicking the logout button.
@@ -94,11 +107,25 @@ public class MainPageController implements Initializable {
         SwitchScenes getID = new SwitchScenes();
         getID.newScene(_userID, "UserID.fxml", "Copy your ID");
     }
-    
+
     public void getAppointmentData(ActionEvent _get) throws IOException {
         SwitchScenes getAppt = new SwitchScenes();
         getAppt.newScene(_get, "GetAppointments.fxml", "Test View");
     }
+
+    public String getApptData(ActionEvent _get) {
+        GetAppointment info = new GetAppointment("id");
+        AppointmentAPIAdapter get = new AppointmentAPIAdapter();
+        get.getAppointments(info.getId());
+        return get;
+    }
+
+    //=================  SETTERS ===============//
+    /*
+    public void getAppt(GetAppointment _Id) {
+        _Id.setId(this.startTimeText.getText());
+    }
+    */
 
     /**
      * to get appointments data
@@ -189,7 +216,8 @@ public class MainPageController implements Initializable {
     }
 
     /**
-     * Copies the userID to the clipboard when the copy ID button is clicked and notifies the user that it is copied.
+     * Copies the userID to the clipboard when the copy ID button is clicked and
+     * notifies the user that it is copied.
      */
     /*
     public void copyUserID() {
@@ -205,4 +233,27 @@ public class MainPageController implements Initializable {
         copied.showAndWait();
     }
      */
+    /**
+     * Initializes the controller class.
+     *
+     * @param _url
+     * @param _rb
+     */
+    @Override
+    public void initialize(URL _url, ResourceBundle _rb) {
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        //titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        //startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        //endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        //noteCol.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+        mainTable.setItems(retrieveApptData());
+    }
+
+    public ObservableList<GetAppointment> retrieveApptData() {
+        //GetAppointment info = new GetAppointment();
+        ObservableList<GetAppointment> data = FXCollections.observableArrayList();
+        data.add(new GetAppointment(""));
+        return data;
+    }
 }
