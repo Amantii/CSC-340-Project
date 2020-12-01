@@ -46,6 +46,9 @@ public class MainPageController implements Initializable {
 
     @FXML
     protected TextField titleText;
+    
+    @FXML
+    protected TextField apptID;
 
     /**
      * Returns to the login page upon clicking the logout button.
@@ -177,7 +180,7 @@ public class MainPageController implements Initializable {
      * @param _Id
      */
     public void setCancelPressed(DeleteAppointment _Id) {
-        _Id.setId(this.startTimeText.getText());
+        _Id.setId(this.apptID.getText());
     }
 
     /**
