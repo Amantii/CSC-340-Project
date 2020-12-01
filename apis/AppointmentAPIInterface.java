@@ -5,9 +5,8 @@ import java.util.Map;
 /**
  * Grabs information from the appointment API
  *
- * 
- * @author Imran Al Nafiee
- * last updated: 12/01/20
+ *
+ * @author Imran Al Nafiee last updated: 12/01/20
  */
 public interface AppointmentAPIInterface {
 
@@ -15,7 +14,6 @@ public interface AppointmentAPIInterface {
      * Grabs the appointment information from the appointments API
      *
      *
-     * @param _id
      * @return an Array String with the appointment information from the API
      */
     Map getAppointment();

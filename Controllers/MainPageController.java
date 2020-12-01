@@ -4,13 +4,13 @@ package controllers;
  * FXML Controller class for MainPage FXML file
  *
  * @author Amantii
- * @author Imran Al Nafiee
- * last updated: 12/01/20
+ * @author Imran Al Nafiee last updated: 12/01/20
  */
 import Database.ConnectDB;
 import apis.AppointmentAPIAdapter;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -119,12 +119,13 @@ public class MainPageController implements Initializable {
         ArrayList<GetAllAppt> apptList = new ArrayList<>();
         GetAllAppt info = new GetAllAppt();
         ConnectDB connect = new ConnectDB();
-        connect.GetAllAppt();
-
+        PreparedStatement data = connect.GetAllAppt();
+        System.out.println(data);
         AppointmentAPIAdapter get = new AppointmentAPIAdapter();
         get.getAppointment();
         return null;
     }
+
 
     /*
     //=================  SETTERS ===============//
@@ -243,6 +244,12 @@ public class MainPageController implements Initializable {
      */
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
+
+    }
+
+    public static void main(String[] args) throws SQLException {
+        MainPageController call = new MainPageController();
+        call.apptList();
 
     }
 }

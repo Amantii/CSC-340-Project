@@ -78,13 +78,14 @@ public class ConnectDB {
         ps.executeUpdate();
     }
 
-    public void GetAllAppt() throws SQLException {
+    public PreparedStatement GetAllAppt() throws SQLException {
         String showAppt = "SELECT * from create_appt where patient_id = patient_id";
 
         ps = (PreparedStatement) connect.prepareStatement(showAppt);
 
         System.out.println(ps);
-        ps.executeUpdate();
+        ps.executeQuery();
+        return ps;
     }
 
     /**
