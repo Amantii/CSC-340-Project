@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Amantii
  */
 public class RetrieveAppointment {
-    
+
     protected SimpleStringProperty apptID;
     protected SimpleStringProperty title;
     protected SimpleStringProperty startTime;
@@ -25,9 +25,9 @@ public class RetrieveAppointment {
     public String getApptID() {
         return apptID.get();
     }
-    
+
     public String getTitle() {
-        return title.get(); 
+        return title.get();
     }
 
     public String getStartTime() {
@@ -57,6 +57,5 @@ public class RetrieveAppointment {
     public void setNote(SimpleStringProperty note) {
         this.note = note;
     }
-    
-    
+
 }

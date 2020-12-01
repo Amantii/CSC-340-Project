@@ -113,20 +113,20 @@ public class MainPageController implements Initializable {
         getAppt.newScene(_get, "GetAppointments.fxml", "Test View");
     }
 
+    /*
     public String getApptData(ActionEvent _get) {
         GetAppointment info = new GetAppointment("id");
         AppointmentAPIAdapter get = new AppointmentAPIAdapter();
         get.getAppointments(info.getId());
-        return get;
+        //return _get;
     }
-
+     */
     //=================  SETTERS ===============//
     /*
     public void getAppt(GetAppointment _Id) {
         _Id.setId(this.startTimeText.getText());
     }
-    */
-
+     */
     /**
      * to get appointments data
      *
@@ -241,19 +241,21 @@ public class MainPageController implements Initializable {
      */
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        //idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         //titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         //startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         //endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         //noteCol.setCellValueFactory(new PropertyValueFactory<>("note"));
 
-        mainTable.setItems(retrieveApptData());
+        //mainTable.setItems(retrieveApptData());
     }
 
+    /*
     public ObservableList<GetAppointment> retrieveApptData() {
         //GetAppointment info = new GetAppointment();
         ObservableList<GetAppointment> data = FXCollections.observableArrayList();
         data.add(new GetAppointment(""));
         return data;
     }
+     */
 }
