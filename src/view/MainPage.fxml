@@ -37,5 +37,6 @@
       </ImageView>
       <Label layoutX="587.0" layoutY="13.0" />
       <Button layoutX="610.0" layoutY="8.0" mnemonicParsing="false" onAction="#getUserID" style="-fx-font-family: serif; -fx-border-color: black;" text="Get User ID" />
+      <Button layoutX="598.0" layoutY="459.0" mnemonicParsing="false" onAction="#getAppointmentData" text="Display Appt" />
    </children>
 </AnchorPane>

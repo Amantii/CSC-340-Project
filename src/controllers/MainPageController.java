@@ -94,6 +94,11 @@ public class MainPageController implements Initializable {
         SwitchScenes getID = new SwitchScenes();
         getID.newScene(_userID, "UserID.fxml", "Copy your ID");
     }
+    
+    public void getAppointmentData(ActionEvent _get) throws IOException {
+        SwitchScenes getAppt = new SwitchScenes();
+        getAppt.newScene(_get, "GetAppointments.fxml", "Test View");
+    }
 
     /**
      * to get appointments data
