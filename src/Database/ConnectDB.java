@@ -5,7 +5,7 @@ package Database;
  *
  * @author Amantii last updated: 11/29/20
  */
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -57,19 +57,35 @@ public class ConnectDB {
         ps.executeUpdate();
     }
 
-    public void apptInsertion(String _start, String _end, String _title) throws SQLException {
-        String apptInsert = "INSERT INTO create_appt(start,end,title) VALUES(?,?,?)";
+    public void apptInsertion(String _start, String _end, String _title, String _apptId) throws SQLException {
+        String apptInsert = "INSERT INTO create_appt(Appointment_id,start,end,title) VALUES(?,?,?,?)";
         ps = (PreparedStatement) connect.prepareStatement(apptInsert);
-        ps.setString(1, _start);
-        ps.setString(2, _end);
-        ps.setString(3, _title);
+        ps.setString(1, _apptId);
+        ps.setString(2, _start);
+        ps.setString(3, _end);
+        ps.setString(4, _title);
 
         System.out.println(ps);
         ps.executeUpdate();
     }
 
-    public void deleteAppt(String _start, String _end, String _title) {
-        String deleteInsert = "";
+    public void deleteAppt(String _id) throws SQLException {
+        String deleteInsert = "DELETE FROM `create_appt` WHERE Appointment_id = Appointment_id";
+
+        ps = (PreparedStatement) connect.prepareStatement(deleteInsert);
+
+        System.out.println(ps);
+        ps.executeUpdate();
+    }
+
+    public PreparedStatement GetAllAppt() throws SQLException {
+        String showAppt = "SELECT * from create_appt where patient_id = patient_id";
+
+        ps = (PreparedStatement) connect.prepareStatement(showAppt);
+
+        System.out.println(ps);
+        ps.executeQuery();
+        return ps;
     }
 
     /**

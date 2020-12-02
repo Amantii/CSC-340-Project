@@ -1,11 +1,12 @@
 package apis;
 
+import java.util.Map;
+
 /**
  * Grabs information from the appointment API
  *
- * Updated December 1st, 2020
  *
- * @Author Imran Al Nafiee
+ * @author Imran Al Nafiee last updated: 12/01/20
  */
 public interface AppointmentAPIInterface {
 
@@ -13,10 +14,9 @@ public interface AppointmentAPIInterface {
      * Grabs the appointment information from the appointments API
      *
      *
-     * @param _id
      * @return an Array String with the appointment information from the API
      */
-    String getAppointments(String _id);
+    Map getAppointment();
 
     /**
      * This is to make appointment method
@@ -32,7 +32,7 @@ public interface AppointmentAPIInterface {
      * This is to delete appointment method;
      *
      * @param _appointmentId
-     * @return 
+     * @return
      */
     String deleteAppointment(String _appointmentId);
 

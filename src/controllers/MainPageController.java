@@ -3,33 +3,27 @@ package controllers;
 /**
  * FXML Controller class for MainPage FXML file
  *
- * @author Amantii last updated: 11/29/20
+ * @author Amantii
+ * @author Imran Al Nafiee last updated: 12/01/20
  */
 import Database.ConnectDB;
 import apis.AppointmentAPIAdapter;
-import apis.AppointmentApi;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import models.DeleteAppointment;
-import models.GetAppointment;
+import models.GetAllAppt;
 import models.MakeAppointment;
-import models.RetrieveAppointment;
 import view.SwitchScenes;
 
 public class MainPageController implements Initializable {
@@ -49,22 +43,22 @@ public class MainPageController implements Initializable {
     protected TextField apptID;
 
     @FXML
-    protected TableView<GetAppointment> mainTable;
+    protected TableView<GetAllAppt> mainTable;
 
     @FXML
-    protected TableColumn<GetAppointment, String> idCol;
+    protected TableColumn<GetAllAppt, String> idCol;
 
     @FXML
-    protected TableColumn<GetAppointment, String> titleCol;
+    protected TableColumn<GetAllAppt, String> titleCol;
 
     @FXML
-    protected TableColumn<GetAppointment, String> startTimeCol;
+    protected TableColumn<GetAllAppt, String> startTimeCol;
 
     @FXML
-    protected TableColumn<GetAppointment, String> endTimeCol;
+    protected TableColumn<GetAllAppt, String> endTimeCol;
 
     @FXML
-    protected TableColumn<GetAppointment, String> noteCol;
+    protected TableColumn<GetAllAppt, String> noteCol;
 
     /**
      * Returns to the login page upon clicking the logout button.
@@ -117,40 +111,23 @@ public class MainPageController implements Initializable {
     }
 
     /*
-    public String getApptData(ActionEvent _get) {
-        GetAppointment info = new GetAppointment("id");
-        AppointmentAPIAdapter get = new AppointmentAPIAdapter();
-        get.getAppointments(info.getId());
-        //return _get;
-    }
-     */
-    //=================  SETTERS ===============//
-    /*
-    public void getAppt(GetAppointment _Id) {
-        _Id.setId(this.startTimeText.getText());
-    }
-     */
-    /**
      * to get appointments data
      *
      * @param _apptInfo
      */
-    /*
-    public void getAppt(GetAppointment _apptInfo) {
-        GetAppointment info = new GetAppointment();
-
-        try {
-            // Calling methods that set/get the values for use in the program
-            getAppt(info);
-
-        } catch (Exception ex) {
-            System.out.println(ex);
-
-        }
+    public ArrayList<GetAllAppt> apptList() throws SQLException {
+        ArrayList<GetAllAppt> apptList = new ArrayList<>();
+        GetAllAppt info = new GetAllAppt();
+        ConnectDB connect = new ConnectDB();
+        PreparedStatement data = connect.GetAllAppt();
+        System.out.println(data);
         AppointmentAPIAdapter get = new AppointmentAPIAdapter();
-        get.getAppointments(info.getId());
+        get.getAppointment();
+        return null;
     }
 
+
+    /*
     //=================  SETTERS ===============//
     public void getAppt(GetAppointment _Id) {
         _Id.setId(this.startTimeText.getText());
@@ -162,30 +139,29 @@ public class MainPageController implements Initializable {
      * @throws java.sql.SQLException
      */
     public void setApptPressed(ActionEvent _pressed) throws SQLException {
+        String apptId;
         MakeAppointment make = new MakeAppointment();
         if (startTimeText.getText().isEmpty() || endTimeText.getText().isEmpty()
                 || titleText.getText().isEmpty()) {
             alert.displayAlerts(Alert.AlertType.WARNING, "Invalid Entry",
                     "Enter valid inputs into fields");
-        }
-        else {
+        } else {
             ConnectDB connect = new ConnectDB();
-            connect.apptInsertion(startTimeText.getText(), endTimeText.getText(),
-                    titleText.getText());
 
             alert.displayAlerts(Alert.AlertType.CONFIRMATION, "Added",
                     "Appointment created successfully");
             try {
-            // Calling methods that set/get the values for use in the program
-            setApptStartTime(make);
-            setApptEndTime(make);
-            setTitleText(make);
-        }
-            catch (Exception ex) {
-            System.out.println(ex);
-        }
-        AppointmentAPIAdapter appt = new AppointmentAPIAdapter();
-        appt.makeAppointment(make.getStartTime(), make.getEndTime(), make.getTitle());
+                // Calling methods that set/get the values for use in the program
+                setApptStartTime(make);
+                setApptEndTime(make);
+                setTitleText(make);
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+            AppointmentAPIAdapter appt = new AppointmentAPIAdapter();
+            apptId = appt.makeAppointment(make.getStartTime(), make.getEndTime(), make.getTitle());
+            connect.apptInsertion(startTimeText.getText(), endTimeText.getText(),
+                    titleText.getText(), apptId);
         }
 
     }
@@ -208,19 +184,30 @@ public class MainPageController implements Initializable {
      *
      * @param _pressed
      */
-    public void setCancelPressed(ActionEvent _pressed) {
+    public void setCancelPressed(ActionEvent _pressed) throws SQLException {
         DeleteAppointment delete = new DeleteAppointment();
+        if (apptID.getText().isEmpty()) {
+            alert.displayAlerts(Alert.AlertType.WARNING, "Invalid Entry",
+                    "Enter valid inputs into fields");
+        } else {
 
-        try {
-            // Calling methods that set/get the values for use in the program
-            setCancelPressed(delete);
+            ConnectDB connect = new ConnectDB();
 
-        } catch (Exception ex) {
-            System.out.println(ex);
+            alert.displayAlerts(Alert.AlertType.CONFIRMATION, "Deleted",
+                    "Appointment deleted successfully");
 
+            try {
+                // Calling methods that set/get the values for use in the program
+                setCancelPressed(delete);
+
+            } catch (Exception ex) {
+                System.out.println(ex);
+
+            }
+            AppointmentAPIAdapter cancel = new AppointmentAPIAdapter();
+            cancel.deleteAppointment(delete.getId());
+            connect.deleteAppt(apptID.getText());
         }
-        AppointmentAPIAdapter cancel = new AppointmentAPIAdapter();
-        cancel.deleteAppointment(delete.getId());
     }
 
     //=================  SETTERS ===============//
@@ -233,8 +220,7 @@ public class MainPageController implements Initializable {
     }
 
     /**
-     * Copies the userID to the clipboard when the copy ID button is clicked and
-     * notifies the user that it is copied.
+     * Copies the userID to the clipboard when the copy ID button is clicked and notifies the user that it is copied.
      */
     /*
     public void copyUserID() {
@@ -258,21 +244,12 @@ public class MainPageController implements Initializable {
      */
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
-        //idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        //titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        //startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        //endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-        //noteCol.setCellValueFactory(new PropertyValueFactory<>("note"));
 
-        //mainTable.setItems(retrieveApptData());
     }
 
-    /*
-    public ObservableList<GetAppointment> retrieveApptData() {
-        //GetAppointment info = new GetAppointment();
-        ObservableList<GetAppointment> data = FXCollections.observableArrayList();
-        data.add(new GetAppointment(""));
-        return data;
+    public static void main(String[] args) throws SQLException {
+        MainPageController call = new MainPageController();
+        call.apptList();
+
     }
-     */
 }
